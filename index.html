@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title> CENTRAL PLANT WEBPAGE ! THIS IS MOCK UP PAGE ! </title>
+
+
+<!-- load css -->
+<link rel="stylesheet" href="./lib/CSS/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="./lib/CSS/style.css" type="text.css"</link>
+<link rel="stylesheet" href="./lib/CSS/pure-min.css" type="text.css"</link>
+<link rel="stylesheet" href="./lib/CSS/radar-chart.css" type="text.css"</link>
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.10.5/css/jquery.dataTables.css">
+
+
+<!-- load javascript libraries -->
+<script src="./lib/jquery-2.2.4.min.js"></script>
+<script src="./lib/bootstrap.min.js"></script>
+<script src="./lib/d3.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.10.5/jquery.dataTables.min.js"></script>
+
+<!-- Load sankey libraries 
+<script src="./lib/render.js"></script>
+<script src="./lib/sankey.js"></script>  
+-->
+
+<!-- Load radar chart libraries 
+<script src="./lib/RadarChart.js"></script> 
+<script src="./lib/render_radar.js"></script>
+-->
+
+
+<style>
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+body {
+    padding-top: 0px;
+    padding-right: 80px;
+    padding-bottom: 0px;
+    padding-left: 80px;
+} 
+footer {
+      background-color: #e2f7ff;
+	  position: absolute;
+      bottom: 10;
+      height: 20px;
+	  width: 85%;
+	  margin-top: 15px;
+	  margin-bottom: 20px;
+}
+
+.topnav {
+  background-color: #ececec;
+  overflow: hidden;
+}
+
+.topnav a {
+  number: left;
+  display: block;
+  color: #7c7c7c;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 16px;
+  font-size: 16px;
+}
+
+.topnav a:hover {
+  background-color: #e2f7ff;
+  color: black;
+}
+
+input[type=button] {
+    width: 100%;
+    background-color: #60d3e5;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=number],select{
+width: 100%;
+padding:10px 20px;
+margin: 5px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+
+/* runmodel */
+#runmodel {
+	width: 100%;
+	height: auto;
+	padding: 12px 20px;
+	background: #f2f2f2;
+	border-radius: 4px;
+	/*color: white;*/
+	text-align: left;
+	overflow: auto;	
+}
+</style>
+
+
+<body>
+  
+<!-- header -->
+<header>
+	<nav class="navbar navbar-default navbar-static-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <h1> CENTRAL PLANT WEBPAGE ! THIS IS MOCK UP PAGE ! </h1>      
+          </div>
+        </div>
+   </nav>
+</header>   
+<!-- end of header -->
+
+<!-- navigation bar -->	
+<div class="topnav">
+      <a href="index_r2.html">LINK A</a>
+	  <a href="district.html">LINK B</a>
+	  <a href="index_r2.html">LINK C</a>
+	  <a href="index_r2.html">LINK D</a>
+</div> 
+<!-- end of navigation bar -->	
+
+
+<div class="container-fluid">    
+<!-- Summary -->  
+<p class="survey"> Description of the webpage
+</p>
+
+ 
+<div class="row"> 
+	<form id="runmodel" action="/action_page.php">
+		<div class="col-lg-4"> 
+		<p><b>Building Total Square Footage (GSF): </b></p>
+		Residential Building/ Dorm(GSF): <input type="number" name="bldg_gsf_res" value= 10000000>
+		<br>
+		Office Building(GSF): <input type="number" name="bldg_gsf_office" value= 100000>
+		<br>
+		Community Center Building(GSF): <input type="number" name="bldg_gsf_community" value= 100000>
+		<br>
+		Retail Building(GSF): <input type="number" name="bldg_gsf_retail" value= 100000>
+		<br>
+		Grocery Store Building(GSF): <input type="number" name="bldg_gsf_grocery" value= 100000>
+		<br>
+		Hotel Building(GSF): <input type="number" name="bldg_gsf_hotel" value= 100000>
+		<br>
+		CA Climate Zone: <select name="climate_zone">
+			<option>CZ 01</option>
+			<option>CZ 02</option>
+			<option>CZ 03</option>
+			<option>CZ 04</option>
+		</select>
+		</div>	 
+		<div class="col-lg-4"> 
+		<p><b>System Efficiency: </b><p>
+		Water-to-Water HP Heating Rated COP: <input type="number" name="wwhp_heating_rated_COP" value= 4>
+		<br>
+		Water-to-Water HP Cooling Rated COP: <input type="number" name="wwhp_cooling_rated_COP" value= 4>
+		<br>
+		Water Cooling Chiller Rated COP: <input type="number" name="water_cooling_chiller_rated_COP" value= 6>
+		<br> 
+		Boiler Efficiency (0~1): <input type="number" name="boiler_efficiency" value= 0.80>
+		<br>
+		Domestic Hot Water Efficiency (0~1): <input type="number" name="dhw_efficiency" value= 0.80>
+		<br>
+		<br>
+		</div>	 
+		<div class="col-lg-4"> 
+		<p><b>Energy Efficiency Measures: </b></p>
+		HVAC System Type: <select name="hvac_type">
+			<option>No cooling/ Gas Heating </option>
+			<option>Roof Top Unit (DX Cooling/ Gas Heating) </option>
+			<option>Roof Top Unit (DX Cooling/ Electric Heating)</option>
+			<option>Single Zone Split Heat Pump</option>
+		</select>
+		<br>
+		DHW Type: <select name="dhw_type">
+			<option>60% Central Water Heater </option>
+			<option>Heat Exchanger</option>
+			<option>Heat Pump Water Heater</option>
+			<option>Electric Water Heater</option>
+		</select>
+		<br>		
+		Energy Efficiency Measure: <select name="bldg_eems">
+			<option>20% Lighting Power Density Reduction</option>
+			<option>20% Plug Load Power Density Reduction</option>
+			<option>Wall Upgrade</option>
+			<option>Window Upgrade</option>
+		</select>		
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<input type="button" onclick="runsimulation()" value = "RUN SIMULATION">
+		<input type="button" onclick="resetfunction()" value = "RESET">
+		</div>	
+	</form>
+</div>
+
+<div class="row"> 
+	<form id="output" action="/action_page.php">
+	<p>
+	<table>
+	<tr><td>
+	  <!-- Area:</td><td><input type=text name=bldg_gsf_tt size=8>
+	  Total Area:</td><td><input type=text name=total_area size=8> -->
+	</td></tr>
+	</table>
+	<p>
+	</form>
+</div>
+
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Time</th>
+				<th>Total Cooling Primary (kbtu)</th>
+				<th>Total cooling Secondary	(kbtu)</th>
+				<th>Total Cooling (kbtu)</th>
+				<th>Total Heating (kbtu)</th>
+				<th>Total DHW (kbtu)</th>
+				<th>Available Simultaneous cooling load (kbtu)</th>
+				<th>Actual Simultaneous heating load (kbtu)</th>				
+				<th>Free Heating (kbtu)</th>
+				<th>Actual Simultaneous DHW load (kbtu)</th>
+				<th>Free Cooling load (kbtu)</th>
+				<th>WWHP Loop Heating Energy</th>
+				<th>WWHP Loop Cooling Energy</th>
+				<th>Chiller Energy</th>
+				<th>Boiler Energy</th>
+				<th>DHW Energy</th>				
+				</tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Time</th>
+				<th>Total Cooling Primary (kbtu)</th>
+				<th>Total cooling Secondary	(kbtu)</th>
+				<th>Total Cooling (kbtu)</th>
+				<th>Total Heating (kbtu)</th>
+				<th>Total DHW (kbtu)</th>
+				<th>Available Simultaneous cooling load (kbtu)</th>
+				<th>Actual Simultaneous heating load (kbtu)</th>
+				<th>Free Heating (kbtu)</th>
+				<th>Actual Simultaneous DHW load (kbtu)</th>
+				<th>Free Cooling load (kbtu)</th>
+				<th>WWHP Loop Heating Energy</th>
+				<th>WWHP Loop Cooling Energy</th>
+				<th>Chiller Energy</th>
+				<th>Boiler Energy</th>
+				<th>DHW Energy</th>		
+				</tr>
+        </tfoot>
+    </table>
+
+
+<script>
+
+// Run Simulation Button Function
+function runsimulation(){
+	//document.getElementByID("runmodel").submit();
+	var inputs = document.getElementById("runmodel");
+	var out = document.getElementById("output");
+	// To define user inputs
+	var bldg_gsf_res= inputs.bldg_gsf_res.value;
+	var bldg_gsf_office= inputs.bldg_gsf_office.value;
+	var bldg_gsf_community= inputs.bldg_gsf_community.value;
+	var bldg_gsf_retail= inputs.bldg_gsf_retail.value;	
+	var bldg_gsf_grocery= inputs.bldg_gsf_grocery.value;	
+	var bldg_gsf_hotel= inputs.bldg_gsf_hotel.value;
+	//console.log(bldg_gsf_office)
+	var wwhp_heating_rated_COP = inputs.wwhp_heating_rated_COP.value;
+	var wwhp_cooling_rated_COP = inputs.wwhp_cooling_rated_COP.value;
+	var water_cooling_chiller_rated_COP = inputs.water_cooling_chiller_rated_COP.value;
+	var boiler_efficiency = inputs.boiler_efficiency.value;
+	var dhw_efficiency = inputs. dhw_efficiency.value;
+	
+	// To disply:
+		// Total Cooling Primary (kbtu)	
+		// Total cooling Secondary	(kbtu) = Res + Hotel
+		// Total Cooling (kbtu)
+		// Total Heating (kbtu)
+		// Total DHW (kbtu)
+
+	$(document).ready(function() {
+		var oTable = $("#example").dataTable({
+		  "ServerSide": false,
+		  "processing": true,
+		  "paging": false,
+		  "searching": false,
+		  "ajax": "./data/data_source.txt",
+		  "columns": [{
+				"data":"Time",
+			  },{
+				"data": "Total_Cooling_Primary_multiplied_area",
+				"render": function(data,type,row) {
+					Total_Cooling_Primary_multiplied_area_val= (row.Office_Cooling*bldg_gsf_office) +
+							(row.community_center_Cooling*bldg_gsf_community) +
+							(row.Retail_Cooling*bldg_gsf_retail) +
+							(row.Grocery_Cooling*bldg_gsf_grocery);
+					//console.log(Total_Cooling_Primary_multiplied_area_val)
+					return (Total_Cooling_Primary_multiplied_area_val).toFixed(1) 
+						console.log(Total_Cooling_Primary_multiplied_area_val)
+							}
+			  },{
+				"data": "Total_Cooling_Secondary_multiplied_area",
+				"render": function(data,type,row) { 
+					Total_Cooling_Secondary_multiplied_area_val = (row.Residential_Cooling*bldg_gsf_res) +
+																(row.Hotel_Cooling*bldg_gsf_hotel);
+					//console.log(Total_Cooling_Secondary_multiplied_area_val)
+					return (Total_Cooling_Secondary_multiplied_area_val).toFixed(1) 
+					}
+			  },{
+				"data": "Total_Cooling_multiplied_area",
+				"render": function(data,type,row) { 
+					Total_Cooling_multiplied_area_val = Total_Cooling_Primary_multiplied_area_val + Total_Cooling_Secondary_multiplied_area_val;
+					//console.log(Total_Cooling_multiplied_area_val)
+					return (Total_Cooling_multiplied_area_val).toFixed(1) 
+					}
+			  },{
+				"data": "Total_Heating_multiplied_area",
+				"render": function(data,type,row) { 
+					Total_Heating_multiplied_area_val = (row.Residential_Heating*bldg_gsf_res) +
+							(row.Office_Heating*bldg_gsf_office) +
+							(row.community_center_Heating*bldg_gsf_community) +
+							(row.Retail_Heating*bldg_gsf_retail) +
+							(row.Grocery_Heating*bldg_gsf_grocery) +
+							(row.Hotel_Heating*bldg_gsf_hotel);
+					return (Total_Heating_multiplied_area_val ).toFixed(1) 
+					}
+			  },{
+				"data": "Total_DHW_multiplied_area",
+				"render": function(data,type,row) { 
+					Total_DHW_multiplied_area_val = (row.Residential_DHW*bldg_gsf_res) +
+							(row.Office_DHW*bldg_gsf_office) +
+							(row.community_center_DHW*bldg_gsf_community) +
+							(row.Retail_DHW*bldg_gsf_retail) +
+							(row.Grocery_DHW*bldg_gsf_grocery) +
+							(row.Hotel_DHW*bldg_gsf_hotel);
+					return (Total_DHW_multiplied_area_val).toFixed(1) 
+					}
+				}
+				
+				// ============================================
+				// Simultaneous heating/cooling load calculation
+				// ============================================
+				
+				// Available Simultaneous cooling load (kbtu)	
+				// Actual Simultaneous heating load = =IF(Total_Cooling *1.4< Total_Heating,Total_Cooling,Total_Heating/1.4)
+				,{
+				"data": "Actual_Simultaneous_cooling_load",
+				"render": function(data,type,row) {
+						if (Total_Cooling_multiplied_area_val*1.4 < Total_Heating_multiplied_area_val){
+							Actual_Simultaneous_cooling_load_val = Total_Cooling_multiplied_area_val;
+							return (Actual_Simultaneous_cooling_load_val).toFixed(1)
+						}
+						else{
+							Actual_Simultaneous_cooling_load_val = Total_Heating_multiplied_area_val/1.4;
+							return (Actual_Simultaneous_cooling_load_val).toFixed(1)
+						}
+					}
+			  }	,{
+				"data": "Actual_Simultaneous_heating_load",
+				"render": function(data,type,row) {
+					Actual_Simultaneous_heating_load_val = Actual_Simultaneous_cooling_load_val*1.4/10;
+							return (Actual_Simultaneous_heating_load_val).toFixed(1)
+						}
+					}
+				
+				// Actual Simultaneous space heating load (free heating) = IF(Actual_Simultaneous_heating_load < Total_Heating_multiplied_area_val ,Actual_Simultaneous_heating_load, Total_Heating_multiplied_area_val)
+				,{
+				"data": "free_heating_load",
+				"render": function(data,type,row) {
+					if(Actual_Simultaneous_heating_load_val < Total_Heating_multiplied_area_val){
+						free_heating_load_val = Actual_Simultaneous_heating_load_val;
+						return (free_heating_load_val).toFixed(1)
+					}
+					else{						
+						free_heating_load_val = Total_Heating_multiplied_area_val;
+						return (free_heating_load_val).toFixed(1)
+					}
+				}
+			  }
+				// Actual Simultaneous DHW load = Actual Simultaneous heating load - Free Heating
+				,{
+				"data": "Actual_Simultaneous_DHW_load",
+				"render": function(data,type,row) {
+					Actual_Simultaneous_DHW_load_val = Actual_Simultaneous_heating_load_val - free_heating_load_val;
+					return (Actual_Simultaneous_DHW_load_val).toFixed(1)
+						}
+					}
+				// Actual Simultaneous cooling load (free cooling)
+				,{
+				"data": "free_cooling_load",
+				"render": function(data,type,row) {
+					free_cooling_load_val = Actual_Simultaneous_cooling_load_val/10;
+					return (free_cooling_load_val).toFixed(1)
+						}
+					}		
+				
+				// =============================
+				// WWHP energy
+				// ============================
+				
+				// Water to water heat pump heating energy = Free heating/ WWHP heating rated COP
+				,{
+				"data": "wwhp_heating_energy",
+				"render": function(data,type,row) {
+					wwhp_heating_energy_val = free_heating_load_val/wwhp_heating_rated_COP;
+					return (wwhp_heating_energy_val).toFixed(1)
+						}
+					}	
+					
+				// Water to water heat pump cooling energy = =IF(Actual Simultaneous DHW load=0,Free Cooling/WWHP cooling rated COP,0)
+				,{
+				"data": "wwhp_cooling_energy",
+				"render": function(data,type,row) {
+					if(Actual_Simultaneous_DHW_load_val = 0){
+						wwhp_cooling_energy_val = free_cooling_load_val/wwhp_cooling_rated_COP;
+						return (wwhp_cooling_energy_val).toFixed(1)
+					}
+					else{						
+						wwhp_cooling_energy_val = 0;
+						return (wwhp_cooling_energy_val).toFixed(1)
+					}
+				}
+			  }
+				// Chiller Energy = =(Total Cooling Load - Free cooling load)/ Water cooling chiller rated COP
+				,{
+				"data": "chiller_energy",
+				"render": function(data,type,row) {
+					chiller_energy_val = (Total_Cooling_multiplied_area_val - free_cooling_load_val) / water_cooling_chiller_rated_COP;
+					return (chiller_energy_val).toFixed(1)
+				}
+			  }				
+				// Boiler Energy = =(Total_Heating_multiplied_area_val - Free Heating)/boiler_efficiency
+				,{
+				"data": "boiler_energy",
+				"render": function(data,type,row) {
+					boiler_energy_val = (Total_Heating_multiplied_area_val - free_heating_load_val) / boiler_efficiency;
+					return (boiler_energy_val).toFixed(1)
+				}
+			  }	
+			  // DHW Energy = =(Total DHW - Actual Simultaneous DHW load - Solar thermal load for residential)/dhw_efficiency
+			  // TODOS: To include "Solar thermal load for residential"
+				,{
+				"data": "dhw_energy",
+				"render": function(data,type,row) {
+					dhw_energy_val = (Actual_Simultaneous_DHW_load_val - Actual_Simultaneous_DHW_load_val) / dhw_efficiency;
+					return (dhw_energy_val).toFixed(1)
+				}
+			  }	
+			//// === start here ===
+			  ]
+	});
+	});	
+}
+
+// Reset Button Function
+function resetfunction(){
+	document.getElementById("runmodel").reset();
+	document.getElementById("output").reset();
+	$('#example').DataTable().clear().draw();
+	$('#example').DataTable().destroy();
+}
+
+</script>
+
+
+<!-- footer -->
+<footer class="footer">
+      <div class="container-fluid">
+        <p>If you have any questions, please feel free to contact abcdefg </p>
+      </div>
+</footer> <!-- end of footer -->
+
+</div> 
+</body>
+</html>
