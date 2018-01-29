@@ -1,0 +1,47 @@
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+#chart {
+	height: 0px;
+    font: 15px sans-serif;
+      }
+	    
+.node text {
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+.link:hover {
+  stroke-opacity: .5;
+}	 
+
+.topnav {
+  background-color: #ececec;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #7c7c7c;
+  text-align: center;
+  text-decoration: none;
+    padding: 10px 16px;
+  font-size: 14px;
+}
+
+.topnav a:hover {
+  background-color: #e2f7ff;
+  color: black;
+}
+
+.nav navbar-nav navbar-right{
+	background: transparent;
+}
